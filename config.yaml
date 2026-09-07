@@ -1,0 +1,48 @@
+radio_dir: Y:\20260103-SongChang\Task2
+task_type: 2.5D
+task_column: label
+auto__label_file:
+  - split_info\label-RND-0.csv
+  - split_info\label-RND-1.csv
+  - split_info\label-RND-2.csv
+  - split_info\label-RND-3.csv
+  - split_info\label-RND-4.csv 
+  - split_info\label-RND-5.csv
+  - split_info\label-RND-6.csv
+  - split_info\label-RND-7.csv
+  - split_info\label-RND-8.csv
+  - split_info\label-RND-9.csv 
+# label_file: split_info\label-RND-0.csv
+label_file: group.csv
+clinic_file: Y:\20260103-SongChang\Task2\Clinical.csv
+survival_file: Y:\20260103-SongChang\Task2\Survival.csv
+
+ml_models:
+#   - LR
+#   - KNN
+  - RandomForest
+  - ExtraTrees
+  - XGBoost
+  - LightGBM
+  - SVM
+label_mapping: 
+  0: No
+  1: Yes
+extractor_settings: custom_settings\exampleCT.yaml
+subsets: [train, test]
+modals: [CT]
+
+summary_models: [Clinical, Radiomics, DL2D, Combined]
+sel_model:
+  Clinical: ExtraTrees
+  Radiomics: ExtraTrees
+  DL2D: densenet201
+  Combined: Nomo
+  
+metric_spec: AUC
+metric_spec_ids: 
+metric_spec_agg: mean
+save_dir: viz
+font.size: 12
+display.colors: Set1
+use_youden: True
